@@ -1,0 +1,25 @@
+# ShireSheep Configuration
+# ========================
+# Set enable-probabilities to true for per-colour probabilities
+# without this enabled all colours have the same chance.
+# ***
+# A higher number means sheep will be dyed this colour more frequently
+# enable-probabilities must be 'true' for this to have any effect
+enable-probabilities: false
+colours:
+  black: 1
+  blue: 1
+  brown: 1
+  cyan: 1
+  green: 1
+  gray: 1
+  light_blue: 1
+  light_gray: 1
+  lime: 1
+  magenta: 1
+  orange: 1
+  pink: 1
+  purple: 1
+  red: 1
+  white: 1
+  yellow: 1
