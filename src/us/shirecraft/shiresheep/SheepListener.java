@@ -1,6 +1,7 @@
 package us.shirecraft.shiresheep;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Sheep;
@@ -27,6 +28,20 @@ public class SheepListener implements Listener {
 		
 		// Check if it's a sheep and continue...
 		checkEntity(en);
+	}
+	
+	@EventHandler (priority = EventPriority.NORMAL)
+	public void onChunkPopulation(ChunkPopulateEvent ev) {
+		// Get the chunk that caused this event
+		Chunk chunk = ev.getChunk();
+		
+		// Get an array of entities in the chunk
+		Entity[] entities = chunk.getEntities();
+		
+		// Pass entities to be checked and dyed if sheep
+		for(Entity en : entities) {
+			checkEntity(en);
+		}
 	}
 	
 	public boolean checkEntity(Entity en) {
