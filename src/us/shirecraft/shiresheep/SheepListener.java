@@ -1,5 +1,6 @@
 package us.shirecraft.shiresheep;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Sheep;
@@ -38,9 +39,25 @@ public class SheepListener implements Listener {
 		Sheep sheep = (Sheep) en;
 		
 		// Done
-    
-    // @TODO: Dye method using probabilities
-		return false;
+		return dyeSheep(sheep);
+	}
+	
+	public boolean dyeSheep(Sheep sheep) {
+		// Schedule a task to run asynchronously
+		Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, new Runnable() {
+			@Override
+			public void run() {
+				// Did the sheep vanish in the last few server ticks?
+				if(null == sheep) {
+					return;
+				}
+				
+				// @TODO Dye the entity
+			}
+		}, (long) 1);
+		
+		// Done
+		return true;
 	}
 	
 	private ShireSheep plugin;
