@@ -1,7 +1,10 @@
 package us.shirecraft.shiresheep;
 
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.DyeColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Sheep;
@@ -10,6 +13,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.event.world.ChunkPopulateEvent;
 
 public class SheepListener implements Listener {
 	public SheepListener(ShireSheep plugin) {
@@ -58,7 +62,7 @@ public class SheepListener implements Listener {
 	}
 	
 	public boolean dyeSheep(Sheep sheep) {
-		// Schedule a task to run asynchronously
+		// Schedule a task to do this
 		Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, new Runnable() {
 			@Override
 			public void run() {
@@ -67,7 +71,9 @@ public class SheepListener implements Listener {
 					return;
 				}
 				
-				// @TODO Dye the entity
+				// Dye the sheep entity
+				DyeColor colour = getColour();
+				sheep.setColor(colour);
 			}
 		}, (long) 1);
 		
@@ -75,5 +81,13 @@ public class SheepListener implements Listener {
 		return true;
 	}
 	
+	public DyeColor getColour() {
+		// @TODO use probability configuration
+		return COLOURS[RANDOM.nextInt(COLOURS_SIZE)];
+	}
+	
+	private static final DyeColor[] COLOURS = DyeColor.values();
+	private static final int COLOURS_SIZE = COLOURS.length;
+	private static final Random RANDOM = new Random();
 	private ShireSheep plugin;
 }
