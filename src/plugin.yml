@@ -1,0 +1,6 @@
+name: ShireSheep
+main: us.shirecraft.ShireSheep
+version: 2.1.0
+api-version: 1.13
+author: CoffeeAndChill
+commands: 
