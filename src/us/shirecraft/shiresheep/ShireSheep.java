@@ -11,6 +11,7 @@ public class ShireSheep extends JavaPlugin {
 	public void onEnable() {
 		loadConfiguration();
 		loadProbabilities();
+		getServer().getPluginManager().registerEvents(new SheepListener(this), this);
 	}
 	
 	@Override
